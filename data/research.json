@@ -1,0 +1,35 @@
+[
+  {
+    "title": "Sustainable AI Systems",
+    "description": "This research aims to develop energy-efficient algorithms for deep learning models that can run on edge devices with minimal energy consumption. We've developed novel pruning techniques that reduce computational requirements while maintaining accuracy.",
+    "keyFindings": [
+      "Achieved 70% reduction in energy consumption for CNN models",
+      "Developed adaptive pruning algorithms that adjust to hardware constraints",
+      "Created a framework for measuring and optimizing carbon footprint of AI deployments"
+    ],
+    "collaborators": "Stanford Green Computing Lab, Microsoft Research",
+    "imagePath": "/images/research/sustainable-ai.jpg"
+  },
+  {
+    "title": "Secure Distributed Computing",
+    "description": "This project investigates methods to secure distributed computing environments while maintaining performance. We're developing privacy-preserving machine learning techniques that allow collaborative model training without exposing sensitive data.",
+    "keyFindings": [
+      "Created a secure federated learning protocol with formal privacy guarantees",
+      "Demonstrated resilience against various adversarial attacks",
+      "Designed a lightweight encryption scheme suitable for resource-constrained IoT devices"
+    ],
+    "collaborators": "Google AI, Stanford Security Lab",
+    "imagePath": "/images/research/secure-computing.jpg"
+  },
+  {
+    "title": "Edge Computing Optimization",
+    "description": "This research explores techniques to optimize the deployment and execution of AI models on edge devices. We're developing methods to automatically partition and distribute computation across cloud and edge infrastructure.",
+    "keyFindings": [
+      "Reduced latency by 65% through intelligent workload distribution",
+      "Created an adaptive framework that responds to network conditions and device capabilities",
+      "Developed compression techniques specific to edge-cloud communication patterns"
+    ],
+    "collaborators": "Intel Labs, Edge Computing Consortium",
+    "imagePath": "/images/research/edge-computing.jpg"
+  }
+]

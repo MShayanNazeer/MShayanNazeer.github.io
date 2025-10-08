@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+
+# Environment files
+.env
+.env.local
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Optional: Old server files (if you want to keep them out of GitHub Pages)
+# Uncomment these if you want to exclude the old Express.js files
+# app.js
+# views/
+# package.json
+# package-lock.json

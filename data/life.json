@@ -1,0 +1,46 @@
+{
+  "intro": "Outside my lab, I like to touch some grass, see some people and feel the nature. Life is Fun !!!!",
+  "photography": [
+    {
+      "imagePath": "/images/Rialto_Beach.jpg",
+      "caption": "Rialto Beach, Olympic National Park, WA (August 2025)",
+      "alt": "Rialto Beach"
+    },
+    {
+      "imagePath": "/images/mt_washington_hotel.jpg",
+      "caption": "Mt. Washington Hotel, Bretton Woods, NH (July 2025)",
+      "alt": "Mt. Washington Hotel"
+    },
+    {
+      "imagePath": "/images/Hagia_sophia.jpg",
+      "caption": "Hagia Sophia in Istanbul (December 2024)",
+      "alt": "Istanbul"
+    }
+  ],
+  "travel": [
+    {
+    }
+  ],
+  "reading": [
+    {
+      "title": "Klara and the Sun",
+      "author": "Kazuo Ishiguro",
+      "description": "A poignant exploration of artificial intelligence and what it means to be human."
+    },
+    {
+      "title": "The Overstory",
+      "author": "Richard Powers",
+      "description": "Changed how I think about trees and our relationship with the natural world."
+    },
+    {
+      "title": "The Code Breaker",
+      "author": "Walter Isaacson",
+      "description": "A fascinating dive into CRISPR, gene editing, and the scientists behind these advancements."
+    },
+    {
+      "title": "Sapiens",
+      "author": "Yuval Noah Harari",
+      "description": "A thought-provoking journey through human history."
+    }
+  ]
+}

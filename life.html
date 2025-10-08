@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Life | Muhammad Shayan Nazeer</title>
+  
+  <!-- Basic meta tags -->
+  <meta name="description" content="Muhammad Shayan Nazeer's academic portfolio">
+  <meta name="author" content="Muhammad Shayan Nazeer">
+  
+  <!-- Favicon and Stylesheets -->
+  <link rel="icon" href="images/logo.png" type="image/png">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- Leaflet CSS for interactive world map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-logo">
+        <a href="index.html">
+          <img src="images/logo.png" alt="Logo" class="site-logo">
+        </a>
+      </div>
+      <nav>
+        <ul class="right-aligned-nav">
+          <li><a href="index.html" class="">Home</a></li>
+          <li><a href="news.html" class="">News</a></li>
+          <li><a href="research.html" class="">Research</a></li>
+          <li><a href="publications.html" class="">Publications</a></li>
+          <li><a href="life.html" class="active">Life</a></li>
+          <li><a href="documents/resume.pdf" target="_blank" class="">CV</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <h2>Life Beyond Research</h2>
+
+<p class="life-intro">Outside my lab, I like to touch some grass, see some people and feel the nature. Life is Fun !!!!</p>
+
+<section class="life-section">
+  <h3>Photography</h3>
+  
+  <div class="photo-gallery">
+    <div class="photo-item">
+      <img src="images/Rialto_Beach.jpg" alt="Rialto Beach">
+      <p class="photo-caption">Rialto Beach, Olympic National Park, WA (August 2025)</p>
+    </div>
+    <div class="photo-item">
+      <img src="images/mt_washington_hotel.jpg" alt="Mt. Washington Hotel">
+      <p class="photo-caption">Mt. Washington Hotel, Bretton Woods, NH (July 2025)</p>
+    </div>
+    <div class="photo-item">
+      <img src="images/Hagia_sophia.jpg" alt="Istanbul">
+      <p class="photo-caption">Hagia Sophia in Istanbul (December 2024)</p>
+    </div>
+  </div>
+</section>
+
+<section class="life-section">
+  <h3>Travel</h3>
+  
+  <!-- Interactive World Map -->
+  <div class="travel-map-container">
+    <div id="interactive-world-map" class="interactive-world-map"></div>
+  </div>
+</section>
+
+<section class="life-section">
+  <h3>Reading Corner</h3>
+  
+  <p>Books have always been my refuge. Here are some recent reads that left an impression:</p>
+  
+  <ul class="reading-list">
+    <li><strong>Klara and the Sun</strong> by Kazuo Ishiguro - A poignant exploration of artificial intelligence and what it means to be human.</li>
+    <li><strong>The Overstory</strong> by Richard Powers - Changed how I think about trees and our relationship with the natural world.</li>
+    <li><strong>The Code Breaker</strong> by Walter Isaacson - A fascinating dive into CRISPR, gene editing, and the scientists behind these advancements.</li>
+    <li><strong>Sapiens</strong> by Yuval Noah Harari - A thought-provoking journey through human history.</li>
+  </ul>
+</section>
+    </div>
+    
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; <script>document.write(new Date().getFullYear())</script> Muhammad Shayan Nazeer. All rights reserved.</p>
+    </div>
+  </footer>
+  
+  
+  <!-- Leaflet JavaScript for interactive world map -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  
+  <!-- Custom map script for life page -->
+  <script src="js/interactive-world-map.js"></script>
+</body>
+</html>

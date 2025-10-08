@@ -1,0 +1,66 @@
+[
+  {
+    "type": "Under Review",
+    "title": "Carbon-and Precedence-Aware Scheduling for Data Processing Clusters",
+    "authors": "Adam Lechowicz, Rohan Shenoy, Noman Bashir, Mohammad Hajiesmaili, Adam Wierman, and Christina Delimitrou",
+    "venue": "Under Review, 2025.",
+    "links": [
+      { "name": "PDF", "url": "#" }
+    ]
+  },
+  {
+    "type": "SIGMETRICS 2025",
+    "category": "conference",
+    "title": "Learning-Augmented Competitive Algorithms for Spatiotemporal Online Allocation with Deadline Constraints",
+    "authors": "Adam Lechowicz, Nicolas Christianson, Bo Sun, Noman Bashir, Mohammad Hajiesmaili, Adam Wierman, and Prashant Shenoy",
+    "venue": "ACM SIGMETRICS, 2025.",
+    "links": [
+      { "name": "ARXIV", "url": "#" },
+      { "name": "PDF", "url": "#" }
+    ]
+  },
+  {
+    "type": "MIT 2024",
+    "category": "preprint",
+    "title": "The Climate and Sustainability Implications of Generative AI",
+    "authors": "Noman Bashir, Priya Donti, James Cuff, Sydney Sroka, Marija Ilic, Vivienne Sze, Christina Delimitrou, and Elsa Olivetti",
+    "venue": "An MIT Exploration of Generative AI, 2024.",
+    "links": [
+      { "name": "PDF", "url": "#" }
+    ]
+  },
+  {
+    "type": "SoCC 2024",
+    "category": "conference",
+    "title": "The Sunk Carbon Fallacy: Rethinking Carbon Footprint Metrics for Effective Carbon-Aware Scheduling",
+    "authors": "Noman Bashir, Varun Gohil, Mohammad Shahrad, David Irwin, Anagha B. Kadne, Prashant Shenoy, and Mohammad Hajiesmaili",
+    "venue": "ACM Symposium on Cloud Computing (SoCC), 2024.",
+    "links": [
+      { "name": "PDF", "url": "#" },
+      { "name": "SLIDES", "url": "#" }
+    ]
+  },
+  {
+    "type": "IEEE TSC 2023",
+    "category": "journal",
+    "title": "EcoTrain: Energy-Efficient Training of Deep Neural Networks on Edge Devices",
+    "authors": "Shayan Nazeer, John Doe, Alice Smith, & Bob Johnson",
+    "venue": "IEEE Transactions on Sustainable Computing, 2023.",
+    "links": [
+      { "name": "PDF", "url": "#" },
+      { "name": "CODE", "url": "#" }
+    ]
+  },
+  {
+    "type": "ICML 2023",
+    "category": "conference",
+    "title": "Optimizing Neural Networks for Edge Computing",
+    "authors": "Shayan Nazeer, Lin Chen, & Alice Smith",
+    "venue": "International Conference on Machine Learning (ICML), 2023.",
+    "links": [
+      { "name": "PDF", "url": "#" },
+      { "name": "SLIDES", "url": "#" },
+      { "name": "CODE", "url": "#" }
+    ]
+  }
+]
