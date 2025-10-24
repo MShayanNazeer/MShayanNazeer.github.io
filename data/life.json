@@ -21,26 +21,26 @@
     {
     }
   ],
-  "reading": [
-    {
-      "title": "Klara and the Sun",
-      "author": "Kazuo Ishiguro",
-      "description": "A poignant exploration of artificial intelligence and what it means to be human."
-    },
-    {
-      "title": "The Overstory",
-      "author": "Richard Powers",
-      "description": "Changed how I think about trees and our relationship with the natural world."
-    },
-    {
-      "title": "The Code Breaker",
-      "author": "Walter Isaacson",
-      "description": "A fascinating dive into CRISPR, gene editing, and the scientists behind these advancements."
-    },
-    {
-      "title": "Sapiens",
-      "author": "Yuval Noah Harari",
-      "description": "A thought-provoking journey through human history."
-    }
-  ]
+  // "reading": [
+  //   {
+  //     "title": "Klara and the Sun",
+  //     "author": "Kazuo Ishiguro",
+  //     "description": "A poignant exploration of artificial intelligence and what it means to be human."
+  //   },
+  //   {
+  //     "title": "The Overstory",
+  //     "author": "Richard Powers",
+  //     "description": "Changed how I think about trees and our relationship with the natural world."
+  //   },
+  //   {
+  //     "title": "The Code Breaker",
+  //     "author": "Walter Isaacson",
+  //     "description": "A fascinating dive into CRISPR, gene editing, and the scientists behind these advancements."
+  //   },
+  //   {
+  //     "title": "Sapiens",
+  //     "author": "Yuval Noah Harari",
+  //     "description": "A thought-provoking journey through human history."
+  //   }
+  // ]
 }
