@@ -46,50 +46,7 @@
 
 <p>My research focuses on developing innovative algorithms and systems for sustainable computing, security, and optimization of AI systems.</p>
 
-<div class="research-item">
-  <div class="research-image-container">
-    <img src="images/research/sustainable-ai.jpg" alt="Sustainable AI Systems" class="research-image">
-  </div>
-  <h3>Sustainable AI Systems</h3>
-  <p>This research aims to develop energy-efficient algorithms for deep learning models that can run on edge devices with minimal energy consumption. We've developed novel pruning techniques that reduce computational requirements while maintaining accuracy.</p>
-  <p><strong>Key Findings:</strong></p>
-  <ul>
-    <li>Achieved 70% reduction in energy consumption for CNN models</li>
-    <li>Developed adaptive pruning algorithms that adjust to hardware constraints</li>
-    <li>Created a framework for measuring and optimizing carbon footprint of AI deployments</li>
-  </ul>
-  <p><strong>Collaborators:</strong> Stanford Green Computing Lab, Microsoft Research</p>
-</div>
-
-<div class="research-item">
-  <div class="research-image-container">
-    <img src="images/research/secure-computing.jpg" alt="Secure Distributed Computing" class="research-image">
-  </div>
-  <h3>Secure Distributed Computing</h3>
-  <p>This project investigates methods to secure distributed computing environments while maintaining performance. We're developing privacy-preserving machine learning techniques that allow collaborative model training without exposing sensitive data.</p>
-  <p><strong>Key Findings:</strong></p>
-  <ul>
-    <li>Created a secure federated learning protocol with formal privacy guarantees</li>
-    <li>Demonstrated resilience against various adversarial attacks</li>
-    <li>Designed a lightweight encryption scheme suitable for resource-constrained IoT devices</li>
-  </ul>
-  <p><strong>Collaborators:</strong> Google AI, Stanford Security Lab</p>
-</div>
-
-<div class="research-item">
-  <div class="research-image-container">
-    <img src="images/research/edge-computing.jpg" alt="Edge Computing Optimization" class="research-image">
-  </div>
-  <h3>Edge Computing Optimization</h3>
-  <p>This research explores techniques to optimize the deployment and execution of AI models on edge devices. We're developing methods to automatically partition and distribute computation across cloud and edge infrastructure.</p>
-  <p><strong>Key Findings:</strong></p>
-  <ul>
-    <li>Reduced latency by 65% through intelligent workload distribution</li>
-    <li>Created an adaptive framework that responds to network conditions and device capabilities</li>
-    <li>Developed compression techniques specific to edge-cloud communication patterns</li>
-  </ul>
-  <p><strong>Collaborators:</strong> Intel Labs, Edge Computing Consortium</p>
-</div>
+<!-- Research items will be loaded dynamically from data/research.json -->
 
 <h3>Grants and Funding</h3>
 <ul>
@@ -111,5 +68,7 @@
   <!-- Leaflet JavaScript for interactive world map -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   
+  <!-- Dynamic content loading from JSON -->
+  <script src="js/research.js"></script>
 </body>
 </html>
