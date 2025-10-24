@@ -3,19 +3,12 @@
     "type": "ACM SenSys 2025",
     "title": "SynchroNB: Toward Robust Timing for 5G NB-IoT Networks",
     "authors": "MA Soomro*, Muhammad Shayan Nazeer*, C Delsignore, Y Chandio, MT Raza, FM Anwar",
-    "venue": "ACM SenSys, 2025.",
-    // "links": [
-    //   { "name": "PDF", "url": "#" }
-    // ]
+    "venue": "ACM SenSys, 2025."
   },
   {
     "type": "IEEE ICC 2026",
     "title": "ORACLE: Reconciling Next-G Cellular Core Operations for Correctness",
     "authors": "Muhammad Shayan Nazeer, MT Raza",
-    "venue": "under review, 2026.",
-    // "links": [
-    //   { "name": "ARXIV", "url": "#" },
-    //   { "name": "PDF", "url": "#" }
-    // ]
+    "venue": "under review, 2026."
   }
  ]
