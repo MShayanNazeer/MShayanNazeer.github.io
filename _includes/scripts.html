@@ -1,0 +1,7 @@
+{% for script in page.extra_js %}
+  {% if script contains '://' %}
+<script src="{{ script }}" crossorigin=""></script>
+  {% else %}
+<script src="{{ script | relative_url }}"></script>
+  {% endif %}
+{% endfor %}

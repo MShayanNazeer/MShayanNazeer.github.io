@@ -1,0 +1,40 @@
+---
+layout: default
+title: Home
+nav: home
+description: Muhammad Shayan Nazeer (Shayan Nazeer) — Ph.D. student at UMass Amherst researching 5G cellular core networks and AI infrastructure at Khwarizmi Lab. Former Nokia Bell Labs intern.
+---
+<div class="page-content">
+  <h1 class="greeting">Hi!</h1>
+  <div class="intro-bio">
+    <p>
+      I am a third-year Ph.D. student in Electrical and Computer Engineering at
+      <a href="https://www.umass.edu/" target="_blank" rel="noopener noreferrer">UMass Amherst</a>,
+      advised by
+      <a href="https://people.umass.edu/taqi/" target="_blank" rel="noopener noreferrer">Taqi Raza</a>.
+      I build systems for next-generation mobile networks and AI infrastructure.
+    </p>
+    <p>
+      My research rethinks the cellular core as a cloud-native, AI-native distributed system. I work on correctness, scalability, state management, and low-latency AI inference at the mobile edge.
+    </p>
+    <p>
+      I have worked at
+      <a href="https://www.nokia.com/bell-labs/" target="_blank" rel="noopener noreferrer">Nokia Bell Labs</a>
+      on AI-driven 5G mobility optimization, leading to a patent filing accepted by Nokia's patent board.
+      Before my Ph.D., I studied Electrical Engineering at
+      <a href="https://seecs.nust.edu.pk/" target="_blank" rel="noopener noreferrer">SEECS</a>,
+      <a href="https://nust.edu.pk/" target="_blank" rel="noopener noreferrer">NUST</a>,
+      where I graduated with a gold medal for the best capstone project.
+    </p>
+    <p class="intro-contact"><strong>Email:</strong> <a href="mailto:mnazeer@umass.edu">mnazeer@umass.edu</a></p>
+    <p class="intro-contact"><a href="{{ '/documents/resume.pdf' | relative_url }}" target="_blank" rel="noopener noreferrer">Resume</a></p>
+  </div>
+
+  <hr class="section-divider">
+
+  <section class="news-section">
+    <h2>Latest News</h2>
+    {% include news-table.html limit=4 %}
+    <p class="section-link"><a href="{{ '/news.html' | relative_url }}">View all news</a></p>
+  </section>
+</div>

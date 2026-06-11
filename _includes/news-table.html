@@ -1,0 +1,19 @@
+<table class="news-table{% if include.full %} full-news-table{% endif %}">
+  <tbody>
+    {% if include.limit %}
+      {% for item in site.data.news limit:include.limit %}
+    <tr>
+      <th scope="row">{{ item.date }}</th>
+      <td>{{ item.content }}</td>
+    </tr>
+      {% endfor %}
+    {% else %}
+      {% for item in site.data.news %}
+    <tr>
+      <th scope="row">{{ item.date }}</th>
+      <td>{{ item.content }}</td>
+    </tr>
+      {% endfor %}
+    {% endif %}
+  </tbody>
+</table>

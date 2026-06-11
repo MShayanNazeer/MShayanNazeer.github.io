@@ -1,0 +1,42 @@
+---
+layout: default
+title: Beyond Research
+nav: life
+description: Personal interests of Shayan Nazeer (Muhammad Shayan Nazeer) — photography, travel, and life beyond research at UMass Amherst.
+extra_css:
+  - https://unpkg.com/leaflet@1.9.4/dist/leaflet.css
+extra_js:
+  - https://unpkg.com/leaflet@1.9.4/dist/leaflet.js
+  - /js/interactive-world-map.js
+---
+<div class="page-content">
+  <h2>Life Beyond Research</h2>
+  <p class="life-intro">Outside my lab, I like to touch some grass, see some people and feel the nature. Life is Fun !!!!</p>
+
+  <section class="life-section">
+    <h3>Photography</h3>
+    <div class="photo-gallery">
+      <div class="photo-item">
+        <img src="{{ '/images/glencoe_park.jpg' | relative_url }}" alt="Glencoe National Reserve">
+        <p class="photo-caption">Glencoe National Reserve, Scotland (May 2026)</p>
+      </div>
+      <div class="photo-item">
+        <img src="{{ '/images/Rialto_Beach.jpg' | relative_url }}" alt="Rialto Beach">
+        <p class="photo-caption">Rialto Beach, Olympic National Park, WA (August 2025)</p>
+      </div>
+      <div class="photo-item">
+        <img src="{{ '/images/mt_washington_hotel.jpg' | relative_url }}" alt="Mt. Washington Hotel">
+        <p class="photo-caption">Mt. Washington Hotel, Bretton Woods, NH (July 2025)</p>
+      </div>
+      <div class="photo-item">
+        <img src="{{ '/images/Hagia_sophia.jpg' | relative_url }}" alt="Istanbul">
+        <p class="photo-caption">Hagia Sophia in Istanbul (December 2024)</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="life-section">
+    <h3>Travel</h3>
+    <div id="interactive-world-map" class="interactive-world-map"></div>
+  </section>
+</div>

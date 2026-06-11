@@ -1,0 +1,19 @@
+<div class="publications-container">
+  {% for pub in site.data.publications %}
+  <article class="publication-entry">
+    <div class="publication-title">{{ pub.title }}</div>
+    <p class="publication-authors">{{ pub.authors }}</p>
+    <p class="publication-venue">{{ pub.venue }}</p>
+    {% if pub.badge %}
+    <div class="publication-badge">{{ pub.badge }}</div>
+    {% endif %}
+    {% if pub.pdf or pub.slides or pub.code %}
+    <div class="publication-links">
+      {% if pub.pdf %}<a href="{{ pub.pdf }}" class="publication-link" target="_blank" rel="noopener noreferrer">PDF</a>{% endif %}
+      {% if pub.slides %}<a href="{{ pub.slides }}" class="publication-link" target="_blank" rel="noopener noreferrer">Slides</a>{% endif %}
+      {% if pub.code %}<a href="{{ pub.code }}" class="publication-link" target="_blank" rel="noopener noreferrer">Code</a>{% endif %}
+    </div>
+    {% endif %}
+  </article>
+  {% endfor %}
+</div>

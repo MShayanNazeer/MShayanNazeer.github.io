@@ -1,0 +1,173 @@
+{% assign page_description = page.description | default: site.seo.description %}
+{% if page.nav == 'home' %}
+  {% assign seo_document_title = page.seo_title | default: site.title | append: ' | Ph.D. Student, UMass Amherst' %}
+{% else %}
+  {% assign seo_document_title = page.seo_title | default: page.title | append: ' | ' | append: site.title %}
+{% endif %}
+{% assign canonical_url = page.url | replace: 'index.html', '' | absolute_url %}
+{% assign og_image = site.seo.image | absolute_url %}
+
+<title>{{ seo_document_title }}</title>
+<meta name="description" content="{{ page_description | strip_newlines | escape }}">
+<meta name="author" content="{{ site.author }}">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="googlebot" content="index, follow">
+<link rel="canonical" href="{{ canonical_url }}">
+
+<meta property="og:type" content="{% if page.nav == 'home' %}profile{% else %}website{% endif %}">
+<meta property="og:site_name" content="{{ site.title }}">
+<meta property="og:title" content="{{ seo_document_title | escape }}">
+<meta property="og:description" content="{{ page_description | strip_newlines | escape }}">
+<meta property="og:url" content="{{ canonical_url }}">
+<meta property="og:image" content="{{ og_image }}">
+<meta property="og:locale" content="en_US">
+{% if page.nav == 'home' %}
+<meta property="profile:first_name" content="Shayan">
+<meta property="profile:last_name" content="Nazeer">
+<meta property="profile:username" content="MShayanNazeer">
+{% endif %}
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="{{ seo_document_title | escape }}">
+<meta name="twitter:description" content="{{ page_description | strip_newlines | escape }}">
+<meta name="twitter:image" content="{{ og_image }}">
+
+{% for profile in site.seo.same_as %}
+<link rel="me" href="{{ profile }}">
+{% endfor %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "{{ site.url | append: site.baseurl | append: '/#website' }}",
+      "url": "{{ site.url | append: site.baseurl | append: '/' }}",
+      "name": "{{ site.title }}",
+      "description": "{{ site.seo.description | strip_newlines | escape }}",
+      "inLanguage": "en-US",
+      "publisher": {
+        "@id": "{{ site.url | append: site.baseurl | append: '/#person' }}"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "{{ site.url | append: site.baseurl | append: '/#person' }}",
+      "name": "{{ site.seo.legal_name }}",
+      "alternateName": {{ site.seo.alternate_names | jsonify }},
+      "url": "{{ site.url | append: site.baseurl | append: '/' }}",
+      "email": "{{ site.seo.email }}",
+      "image": "{{ og_image }}",
+      "jobTitle": "{{ site.seo.job_title }}",
+      "description": "{{ site.seo.description | strip_newlines | escape }}",
+      "knowsAbout": {{ site.seo.knows_about | jsonify }},
+      "sameAs": {{ site.seo.same_as | jsonify }},
+      "affiliation": [
+        {
+          "@type": "CollegeOrUniversity",
+          "name": "University of Massachusetts Amherst",
+          "url": "https://www.umass.edu/",
+          "sameAs": "https://en.wikipedia.org/wiki/University_of_Massachusetts_Amherst"
+        },
+        {
+          "@type": "ResearchOrganization",
+          "name": "Khwarizmi Lab",
+          "url": "https://khwarizmilab.github.io/"
+        },
+        {
+          "@type": "Organization",
+          "name": "Nokia Bell Labs",
+          "url": "https://www.nokia.com/bell-labs/"
+        }
+      ],
+      "worksFor": [
+        {
+          "@type": "CollegeOrUniversity",
+          "name": "University of Massachusetts Amherst",
+          "url": "https://www.umass.edu/"
+        },
+        {
+          "@type": "Organization",
+          "name": "Khwarizmi Lab",
+          "url": "https://khwarizmilab.github.io/"
+        }
+      ],
+      "alumniOf": [
+        {
+          "@type": "CollegeOrUniversity",
+          "name": "National University of Sciences and Technology",
+          "url": "https://nust.edu.pk/"
+        }
+      ],
+      "hasOccupation": {
+        "@type": "Occupation",
+        "name": "Ph.D. Student in Electrical and Computer Engineering",
+        "occupationLocation": {
+          "@type": "City",
+          "name": "Amherst",
+          "containedInPlace": {
+            "@type": "State",
+            "name": "Massachusetts"
+          }
+        },
+        "skills": "5G cellular networks, mobile edge computing, AI infrastructure, federated learning"
+      }
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": "{{ site.url | append: site.baseurl | append: '/#profilepage' }}",
+      "url": "{{ site.url | append: site.baseurl | append: '/' }}",
+      "name": "{{ site.seo.legal_name }} — Academic Profile",
+      "description": "{{ site.seo.description | strip_newlines | escape }}",
+      "inLanguage": "en-US",
+      "isPartOf": {
+        "@id": "{{ site.url | append: site.baseurl | append: '/#website' }}"
+      },
+      "about": {
+        "@id": "{{ site.url | append: site.baseurl | append: '/#person' }}"
+      },
+      "mainEntity": {
+        "@id": "{{ site.url | append: site.baseurl | append: '/#person' }}"
+      }
+    }{% if page.nav == 'publications' %},
+    {
+      "@type": "CollectionPage",
+      "@id": "{{ canonical_url }}#webpage",
+      "url": "{{ canonical_url }}",
+      "name": "Publications by {{ site.seo.legal_name }}",
+      "description": "{{ page_description | strip_newlines | escape }}",
+      "inLanguage": "en-US",
+      "isPartOf": {
+        "@id": "{{ site.url | append: site.baseurl | append: '/#website' }}"
+      },
+      "about": {
+        "@id": "{{ site.url | append: site.baseurl | append: '/#person' }}"
+      },
+      "mainEntity": {
+        "@type": "ItemList",
+        "name": "Research Publications",
+        "itemListElement": [
+          {% for pub in site.data.publications %}
+          {
+            "@type": "ListItem",
+            "position": {{ forloop.index }},
+            "item": {
+              "@type": "ScholarlyArticle",
+              "name": {{ pub.title | jsonify }},
+              "author": {
+                "@id": "{{ site.url | append: site.baseurl | append: '/#person' }}"
+              },
+              "publisher": {
+                "@type": "Organization",
+                "name": {{ pub.venue | jsonify }}
+              }
+            }
+          }{% unless forloop.last %},{% endunless %}
+          {% endfor %}
+        ]
+      }
+    }{% endif %}
+  ]
+}
+</script>

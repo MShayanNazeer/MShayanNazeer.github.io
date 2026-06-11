@@ -1,0 +1,14 @@
+<nav class="top-nav">
+  <ul>
+    {% for item in site.navigation %}
+      {% assign item_url = item.url | relative_url %}
+      <li>
+        {% if item.external %}
+          <a href="{{ item_url }}" target="_blank" rel="noopener noreferrer">{{ item.title }}</a>
+        {% else %}
+          <a href="{{ item_url }}"{% if page.nav == item.key %} class="active"{% endif %}>{{ item.title }}</a>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+</nav>

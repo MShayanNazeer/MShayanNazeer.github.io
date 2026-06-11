@@ -1,0 +1,75 @@
+title: Muhammad Shayan Nazeer
+description: Muhammad Shayan Nazeer's academic portfolio
+author: Muhammad Shayan Nazeer
+url: "https://mshayannazeer.github.io"
+baseurl: ""
+
+seo:
+  legal_name: Muhammad Shayan Nazeer
+  job_title: Ph.D. Student and Research Assistant in Electrical and Computer Engineering
+  email: mnazeer@umass.edu
+  image: /images/wesite_image.jpg
+  description: >
+    Muhammad Shayan Nazeer (Shayan Nazeer) is a Ph.D. student in Electrical and Computer
+    Engineering at UMass Amherst, advised by Taqi Raza at Khwarizmi Lab. His research
+    focuses on cloud-native 5G cellular core networks, AI infrastructure, and mobile edge
+    computing. Former Nokia Bell Labs intern with a patent accepted by Nokia's patent board.
+  keywords:
+    - Shayan Nazeer
+    - Muhammad Shayan Nazeer
+    - Shayan Nazeer UMass Amherst
+    - Muhammad Shayan Nazeer UMass Amherst
+    - Shayan Nazeer UMass
+    - M Shayan Nazeer
+    - Muhammad Shayan Nazeer Nokia
+    - Shayan Nazeer Nokia Bell Labs
+    - UMass Amherst ECE PhD
+    - Khwarizmi Lab
+    - 5G cellular core networks
+    - mobile edge computing
+  alternate_names:
+    - Shayan Nazeer
+    - M Shayan Nazeer
+    - Muhammad Shayan Nazeer UMass Amherst
+    - Shayan Nazeer UMass Amherst
+    - Muhammad Shayan Nazeer UMass
+  knows_about:
+    - 5G cellular networks
+    - cloud-native cellular core
+    - mobile edge computing
+    - AI infrastructure
+    - federated learning
+    - network systems
+    - O-RAN
+  same_as:
+    - https://github.com/MShayanNazeer
+    - https://www.linkedin.com/in/m-shayan-nazeer/
+    - https://scholar.google.com/citations?user=iNR_PzYAAAAJ&hl=en
+
+navigation:
+  - title: Home
+    url: /
+    key: home
+  - title: News
+    url: /news.html
+    key: news
+  - title: Publications
+    url: /publications.html
+    key: publications
+  - title: Beyond Research
+    url: /life.html
+    key: life
+  - title: CV
+    url: /documents/resume.pdf
+    key: cv
+    external: true
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - preview.sh
+  - vendor
+
+plugins:
+  - jekyll-sitemap
