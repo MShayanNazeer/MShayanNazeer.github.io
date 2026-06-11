@@ -493,7 +493,7 @@ footer a:hover {
   border: 1px solid var(--grey-200);
   border-radius: 8px;
   box-shadow: 0 1px 3px var(--shadow);
-  margin: 1.5rem 0 1rem;
+  margin: 1.5rem auto 1rem;
   position: relative;
   overflow: hidden;
 }
