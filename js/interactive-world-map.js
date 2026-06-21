@@ -1,218 +1,116 @@
-const visitedCountries = ['US', 'CA', 'FR', 'CH', 'JP', 'DE', 'IT', 'ES', 'GB', 'UK', 'GBR', 'PK', 'TR', 'PT'];
-const visitedUSStates = ['MA', 'CT', 'VT', 'NH', 'ME', 'NY', 'NJ', 'MD', 'DC', 'NC', 'PA', 'VA', 'WV', 'WA', 'OR', 'CA', 'IA', 'RI', 'DE'];
-const visitedCanadianProvinces = ['ON', 'QC', 'BC', 'AB'];
+const visitedCountries = new Set(['US', 'CA', 'FR', 'CH', 'JP', 'DE', 'IT', 'ES', 'GB', 'UK', 'GBR', 'PK', 'TR', 'PT']);
+const visitedUSStates = new Set(['MA', 'CT', 'VT', 'NH', 'ME', 'NY', 'NJ', 'MD', 'DC', 'NC', 'PA', 'VA', 'WV', 'WA', 'OR', 'CA', 'IA', 'RI', 'DE']);
+const visitedCanadianProvinces = new Set([
+    'ON', 'QC', 'BC', 'AB',
+    'Ont.', 'Ontario', 'Que.', 'Quebec', 'B.C.', 'British Columbia', 'Alta.', 'Alberta'
+]);
 
-const MAP_COLORS = {
-    visitedBlue: '#2563eb',
-    visitedBlueBorder: '#1e40af',
-    visitedRed: '#dc2626',
-    visitedRedBorder: '#991b1b',
-    unvisitedFill: '#e8ecf1',
-    unvisitedBorder: '#94a3b8'
-};
+const visitedCountryNames = ['pakistan', 'pak', 'turkey', 'türkiye', 'germany', 'deutschland', 'spain', 'españa', 'portugal', 'united kingdom', 'great britain', 'canada'];
 
-const worldCountriesUrl = 'https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json';
-const usStatesUrl = 'https://raw.githubusercontent.com/datasets/geo-admin1-us/master/data/admin1-us.geojson';
-const canadaProvincesUrl = 'https://raw.githubusercontent.com/sachijay/canada_maps/master/exported_files/province_territory_simplified.geojson';
+const BLUE = { fill: '#2563eb', border: '#1e40af' };
+const RED = { fill: '#dc2626', border: '#991b1b' };
+const UNVISITED = { fill: '#e8ecf1', border: '#94a3b8' };
 
-const CANADIAN_PROVINCE_ALIASES = {
-    'Ont.': 'ON', 'Ontario': 'ON',
-    'Que.': 'QC', 'Quebec': 'QC',
-    'B.C.': 'BC', 'British Columbia': 'BC',
-    'Alta.': 'AB', 'Alberta': 'AB',
-    'N.L.': 'NL', 'Newfoundland and Labrador': 'NL',
-    'P.E.I.': 'PE', 'Prince Edward Island': 'PE',
-    'N.S.': 'NS', 'Nova Scotia': 'NS',
-    'N.B.': 'NB', 'New Brunswick': 'NB',
-    'Man.': 'MB', 'Manitoba': 'MB',
-    'Sask.': 'SK', 'Saskatchewan': 'SK',
-    'Y.T.': 'YT', 'Yukon': 'YT',
-    'N.W.T.': 'NT', 'Northwest Territories': 'NT',
-    'Nvt.': 'NU', 'Nunavut': 'NU'
+const GEOJSON = {
+    world: 'https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json',
+    us: 'https://raw.githubusercontent.com/datasets/geo-admin1-us/master/data/admin1-us.geojson',
+    canada: 'https://raw.githubusercontent.com/sachijay/canada_maps/master/exported_files/province_territory_simplified.geojson',
+    canadaFallback: 'https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/canada.geojson'
 };
 
 let map;
-let worldLayer, usStatesLayer, canadaLayer;
 
-document.addEventListener('DOMContentLoaded', initializeMap);
-
-function initializeMap() {
+document.addEventListener('DOMContentLoaded', () => {
     map = L.map('interactive-world-map').setView([0, 0], 1);
-
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         minZoom: 1,
         attribution: '© OpenStreetMap contributors'
     }).addTo(map);
-
     map.setMaxBounds([[-90, -180], [90, 180]]);
     map.setMinZoom(1);
 
-    loadWorldCountries();
-    loadUSStates();
-    loadCanadianProvinces();
+    loadGeoJSON(GEOJSON.world, countryStyle);
+    loadGeoJSON(GEOJSON.us, usStateStyle);
+    loadGeoJSON(GEOJSON.canada, canadaProvinceStyle, GEOJSON.canadaFallback);
+});
+
+function prop(props, keys) {
+    for (const key of keys) {
+        const value = props[key];
+        if (value) return String(value).trim();
+    }
+    return '';
+}
+
+function regionStyle(visited, colors, unvisitedOpacity = 0.25) {
+    return {
+        weight: visited ? 1.5 : 1,
+        color: visited ? colors.border : UNVISITED.border,
+        fillColor: visited ? colors.fill : UNVISITED.fill,
+        fillOpacity: visited ? 0.88 : unvisitedOpacity
+    };
 }
 
 function countryStyle(feature) {
     const props = feature.properties || {};
-    const iso2 = (props.iso_a2 || props.ISO_A2 || props.iso_a2_eh || '').trim();
-    const iso3 = (props.iso_a3 || props.ISO_A3 || props.iso_a3_eh || '').trim();
-    const countryName = props.name || props.NAME || props.country || '';
-
-    let isVisited = visitedCountries.includes(iso2) || visitedCountries.includes(iso3);
-
-    if (!isVisited && countryName) {
-        const countryNameLower = countryName.toLowerCase();
-        if (countryNameLower.includes('pakistan') || countryNameLower.includes('pak')) {
-            isVisited = true;
-        } else if (countryNameLower.includes('turkey') || countryNameLower.includes('türkiye')) {
-            isVisited = true;
-        } else if (countryNameLower.includes('germany') || countryNameLower.includes('deutschland')) {
-            isVisited = true;
-        } else if (countryNameLower.includes('spain') || countryNameLower.includes('españa')) {
-            isVisited = true;
-        } else if (countryNameLower.includes('portugal')) {
-            isVisited = true;
-        } else if (countryNameLower.includes('united kingdom') || countryNameLower.includes('great britain')) {
-            isVisited = true;
-        } else if (countryNameLower.includes('canada')) {
-            isVisited = true;
-        }
-    }
-
-    return {
-        weight: isVisited ? 1.5 : 1,
-        color: isVisited ? MAP_COLORS.visitedBlueBorder : MAP_COLORS.unvisitedBorder,
-        fillColor: isVisited ? MAP_COLORS.visitedBlue : MAP_COLORS.unvisitedFill,
-        fillOpacity: isVisited ? 0.88 : 0.25
-    };
+    const codes = [
+        prop(props, ['iso_a2', 'ISO_A2', 'iso_a2_eh']),
+        prop(props, ['iso_a3', 'ISO_A3', 'iso_a3_eh'])
+    ];
+    const name = prop(props, ['name', 'NAME', 'country']).toLowerCase();
+    const visited = codes.some(code => visitedCountries.has(code)) ||
+        visitedCountryNames.some(term => name.includes(term));
+    return regionStyle(visited, BLUE);
 }
 
 function usStateStyle(feature) {
     const props = feature.properties || {};
-    const stateAbbrev = (props.state_code || props.STUSPS || '').trim();
-    const isVisited = visitedUSStates.includes(stateAbbrev);
-
-    return {
-        weight: isVisited ? 1.5 : 1,
-        color: isVisited ? MAP_COLORS.visitedRedBorder : MAP_COLORS.unvisitedBorder,
-        fillColor: isVisited ? MAP_COLORS.visitedRed : MAP_COLORS.unvisitedFill,
-        fillOpacity: isVisited ? 0.88 : 0.15
-    };
-}
-
-function isVisitedCanadianProvince(props) {
-    const candidates = [
-        props.PREABBR,
-        props.preabbr,
-        props.PRENAME,
-        props.prname,
-        props.name,
-        props.NAME,
-        props.PRUID
-    ].filter(Boolean).map(value => String(value).trim());
-
-    return candidates.some(candidate => {
-        if (visitedCanadianProvinces.includes(candidate)) {
-            return true;
-        }
-        const alias = CANADIAN_PROVINCE_ALIASES[candidate];
-        return alias && visitedCanadianProvinces.includes(alias);
-    });
+    return regionStyle(visitedUSStates.has(prop(props, ['state_code', 'STUSPS'])), RED, 0.15);
 }
 
 function canadaProvinceStyle(feature) {
     const props = feature.properties || {};
-    const isVisited = isVisitedCanadianProvince(props);
-
-    return {
-        weight: isVisited ? 1.5 : 1,
-        color: isVisited ? MAP_COLORS.visitedRedBorder : MAP_COLORS.unvisitedBorder,
-        fillColor: isVisited ? MAP_COLORS.visitedRed : MAP_COLORS.unvisitedFill,
-        fillOpacity: isVisited ? 0.88 : 0.15
-    };
+    const values = ['PREABBR', 'preabbr', 'PRENAME', 'prname', 'name', 'NAME']
+        .map(key => props[key])
+        .filter(Boolean)
+        .map(value => String(value).trim());
+    const visited = values.some(value => visitedCanadianProvinces.has(value));
+    return regionStyle(visited, RED, 0.15);
 }
 
 function onEachFeature(feature, layer) {
-    const props = feature.properties || {};
-    const name = props.name || props.NAME || props.PRENAME || props.prname || 'Unknown';
-    const popupContent = `<div class="map-popup"><h4>${name}</h4></div>`;
-
-    layer.bindPopup(popupContent);
+    const name = prop(feature.properties || {}, ['name', 'NAME', 'PRENAME', 'prname']) || 'Unknown';
+    layer.bindPopup(`<div class="map-popup"><h4>${name}</h4></div>`);
 
     const originalStyle = {
         weight: layer.options.weight || 1,
-        color: layer.options.color || MAP_COLORS.unvisitedBorder,
-        fillColor: layer.options.fillColor || MAP_COLORS.unvisitedFill,
+        color: layer.options.color || UNVISITED.border,
+        fillColor: layer.options.fillColor || UNVISITED.fill,
         fillOpacity: layer.options.fillOpacity || 0.3
     };
 
     layer.on({
-        mouseover: function(e) {
-            const isRed = originalStyle.fillColor === MAP_COLORS.visitedRed;
-            const isBlue = originalStyle.fillColor === MAP_COLORS.visitedBlue;
+        mouseover: (e) => {
+            const fill = originalStyle.fillColor;
+            const visited = fill === RED.fill || fill === BLUE.fill;
             e.target.setStyle({
                 weight: 3,
-                color: isRed ? MAP_COLORS.visitedRedBorder : isBlue ? MAP_COLORS.visitedBlueBorder : '#64748b',
-                fillColor: originalStyle.fillColor,
-                fillOpacity: isRed || isBlue ? Math.min(originalStyle.fillOpacity + 0.08, 1) : originalStyle.fillOpacity
+                color: fill === RED.fill ? RED.border : fill === BLUE.fill ? BLUE.border : '#64748b',
+                fillColor: fill,
+                fillOpacity: visited ? Math.min(originalStyle.fillOpacity + 0.08, 1) : originalStyle.fillOpacity
             });
         },
-        mouseout: function(e) {
-            e.target.setStyle(originalStyle);
-        }
+        mouseout: (e) => e.target.setStyle(originalStyle)
     });
 }
 
-function loadWorldCountries() {
-    fetch(worldCountriesUrl)
+function loadGeoJSON(url, style, fallbackUrl) {
+    fetch(url)
         .then(response => response.json())
-        .then(worldData => {
-            worldLayer = L.geoJSON(worldData, {
-                style: countryStyle,
-                onEachFeature: onEachFeature
-            }).addTo(map);
-        })
+        .then(data => L.geoJSON(data, { style, onEachFeature }).addTo(map))
         .catch(error => {
-            console.error('Error loading world countries GeoJSON:', error);
-        });
-}
-
-function loadUSStates() {
-    fetch(usStatesUrl)
-        .then(response => response.json())
-        .then(statesData => {
-            usStatesLayer = L.geoJSON(statesData, {
-                style: usStateStyle,
-                onEachFeature: onEachFeature
-            }).addTo(map);
-        })
-        .catch(error => {
-            console.error('Error loading US states GeoJSON:', error);
-        });
-}
-
-function loadCanadianProvinces() {
-    fetch(canadaProvincesUrl)
-        .then(response => response.json())
-        .then(canadaData => {
-            canadaLayer = L.geoJSON(canadaData, {
-                style: canadaProvinceStyle,
-                onEachFeature: onEachFeature
-            }).addTo(map);
-        })
-        .catch(error => {
-            console.error('Error loading Canada provinces GeoJSON:', error);
-            fetch('https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/canada.geojson')
-                .then(response => response.json())
-                .then(canadaData => {
-                    canadaLayer = L.geoJSON(canadaData, {
-                        style: canadaProvinceStyle,
-                        onEachFeature: onEachFeature
-                    }).addTo(map);
-                })
-                .catch(fallbackError => {
-                    console.error('Fallback Canadian provinces source also failed:', fallbackError);
-                });
+            console.error(`GeoJSON load failed: ${url}`, error);
+            if (fallbackUrl) loadGeoJSON(fallbackUrl, style);
         });
 }

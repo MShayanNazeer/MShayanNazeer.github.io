@@ -24,4 +24,5 @@ bundle config set --local path vendor/bundle
 bundle install
 
 echo "Starting Jekyll at http://127.0.0.1:4000"
+echo "Use that URL in your browser — do not open index.html directly or use a plain static server."
 bundle exec jekyll serve --livereload --host 127.0.0.1
