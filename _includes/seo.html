@@ -1,4 +1,7 @@
 {% assign page_description = page.description | default: site.seo.description %}
+{% assign site_root = site.url | append: site.baseurl %}
+{% assign person_id = site_root | append: '/#person' %}
+{% assign website_id = site_root | append: '/#website' %}
 {% if page.nav == 'home' %}
   {% assign seo_document_title = page.seo_title | default: site.title | append: ' | Ph.D. Student, UMass Amherst' %}
 {% else %}
@@ -42,21 +45,19 @@
   "@graph": [
     {
       "@type": "WebSite",
-      "@id": "{{ site.url | append: site.baseurl | append: '/#website' }}",
-      "url": "{{ site.url | append: site.baseurl | append: '/' }}",
+      "@id": "{{ website_id }}",
+      "url": "{{ site_root | append: '/' }}",
       "name": "{{ site.title }}",
       "description": "{{ site.seo.description | strip_newlines | escape }}",
       "inLanguage": "en-US",
-      "publisher": {
-        "@id": "{{ site.url | append: site.baseurl | append: '/#person' }}"
-      }
+      "publisher": { "@id": "{{ person_id }}" }
     },
     {
       "@type": "Person",
-      "@id": "{{ site.url | append: site.baseurl | append: '/#person' }}",
+      "@id": "{{ person_id }}",
       "name": "{{ site.seo.legal_name }}",
       "alternateName": {{ site.seo.alternate_names | jsonify }},
-      "url": "{{ site.url | append: site.baseurl | append: '/' }}",
+      "url": "{{ site_root | append: '/' }}",
       "email": "{{ site.seo.email }}",
       "image": "{{ og_image }}",
       "jobTitle": "{{ site.seo.job_title }}",
@@ -116,20 +117,14 @@
     },
     {
       "@type": "ProfilePage",
-      "@id": "{{ site.url | append: site.baseurl | append: '/#profilepage' }}",
-      "url": "{{ site.url | append: site.baseurl | append: '/' }}",
+      "@id": "{{ site_root | append: '/#profilepage' }}",
+      "url": "{{ site_root | append: '/' }}",
       "name": "{{ site.seo.legal_name }} — Academic Profile",
       "description": "{{ site.seo.description | strip_newlines | escape }}",
       "inLanguage": "en-US",
-      "isPartOf": {
-        "@id": "{{ site.url | append: site.baseurl | append: '/#website' }}"
-      },
-      "about": {
-        "@id": "{{ site.url | append: site.baseurl | append: '/#person' }}"
-      },
-      "mainEntity": {
-        "@id": "{{ site.url | append: site.baseurl | append: '/#person' }}"
-      }
+      "isPartOf": { "@id": "{{ website_id }}" },
+      "about": { "@id": "{{ person_id }}" },
+      "mainEntity": { "@id": "{{ person_id }}" }
     }{% if page.nav == 'publications' %},
     {
       "@type": "CollectionPage",
@@ -138,12 +133,8 @@
       "name": "Publications by {{ site.seo.legal_name }}",
       "description": "{{ page_description | strip_newlines | escape }}",
       "inLanguage": "en-US",
-      "isPartOf": {
-        "@id": "{{ site.url | append: site.baseurl | append: '/#website' }}"
-      },
-      "about": {
-        "@id": "{{ site.url | append: site.baseurl | append: '/#person' }}"
-      },
+      "isPartOf": { "@id": "{{ website_id }}" },
+      "about": { "@id": "{{ person_id }}" },
       "mainEntity": {
         "@type": "ItemList",
         "name": "Research Publications",
@@ -155,9 +146,7 @@
             "item": {
               "@type": "ScholarlyArticle",
               "name": {{ pub.title | jsonify }},
-              "author": {
-                "@id": "{{ site.url | append: site.baseurl | append: '/#person' }}"
-              },
+              "author": { "@id": "{{ person_id }}" },
               "publisher": {
                 "@type": "Organization",
                 "name": {{ pub.venue | jsonify }}

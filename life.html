@@ -16,22 +16,12 @@ extra_js:
   <section class="life-section">
     <h3>Photography</h3>
     <div class="photo-gallery">
-      <div class="photo-item">
-        <img src="{{ '/images/glencoe_park.jpg' | relative_url }}" alt="Glencoe National Reserve">
-        <p class="photo-caption">Glencoe National Reserve, Scotland (May 2026)</p>
-      </div>
-      <div class="photo-item">
-        <img src="{{ '/images/Rialto_Beach.jpg' | relative_url }}" alt="Rialto Beach">
-        <p class="photo-caption">Rialto Beach, Olympic National Park, WA (August 2025)</p>
-      </div>
-      <div class="photo-item">
-        <img src="{{ '/images/mt_washington_hotel.jpg' | relative_url }}" alt="Mt. Washington Hotel">
-        <p class="photo-caption">Mt. Washington Hotel, Bretton Woods, NH (July 2025)</p>
-      </div>
-      <div class="photo-item">
-        <img src="{{ '/images/Hagia_sophia.jpg' | relative_url }}" alt="Istanbul">
-        <p class="photo-caption">Hagia Sophia in Istanbul (December 2024)</p>
-      </div>
+      {% for photo in site.data.life.photos %}
+      <figure class="photo-item">
+        <img src="{{ photo.src | relative_url }}" alt="{{ photo.alt }}">
+        <figcaption class="photo-caption">{{ photo.caption }}</figcaption>
+      </figure>
+      {% endfor %}
     </div>
   </section>
 

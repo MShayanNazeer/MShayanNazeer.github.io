@@ -4,6 +4,29 @@ author: Muhammad Shayan Nazeer
 url: "https://mshayannazeer.github.io"
 baseurl: ""
 
+profile:
+  display_name: Shayan Nazeer
+  photo: /images/wesite_image.jpg
+  role_prefix: Research Asst. @
+  role_link: Khwarizmi Lab
+  role_url: https://khwarizmilab.github.io/
+  university: UMass Amherst
+  university_url: https://www.umass.edu/
+
+social:
+  - label: Email
+    url: mailto:mnazeer@umass.edu
+    icon: email
+  - label: GitHub
+    url: https://github.com/MShayanNazeer
+    icon: github
+  - label: LinkedIn
+    url: https://www.linkedin.com/in/m-shayan-nazeer/
+    icon: linkedin
+  - label: Google Scholar
+    url: https://scholar.google.com/citations?user=iNR_PzYAAAAJ&hl=en
+    icon: scholar
+
 seo:
   legal_name: Muhammad Shayan Nazeer
   job_title: Ph.D. Student and Research Assistant in Electrical and Computer Engineering
