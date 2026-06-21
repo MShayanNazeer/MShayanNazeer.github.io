@@ -91,7 +91,6 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - README.md
-  - preview.sh
   - vendor
 
 plugins:
