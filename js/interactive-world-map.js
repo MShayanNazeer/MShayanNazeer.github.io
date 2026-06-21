@@ -13,7 +13,23 @@ const MAP_COLORS = {
 
 const worldCountriesUrl = 'https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json';
 const usStatesUrl = 'https://raw.githubusercontent.com/datasets/geo-admin1-us/master/data/admin1-us.geojson';
-const canadaProvincesUrl = 'https://raw.githubusercontent.com/PublicaMundi/MappingAPI/master/data/geojson/canada-provinces.json';
+const canadaProvincesUrl = 'https://raw.githubusercontent.com/sachijay/canada_maps/master/exported_files/province_territory_simplified.geojson';
+
+const CANADIAN_PROVINCE_ALIASES = {
+    'Ont.': 'ON', 'Ontario': 'ON',
+    'Que.': 'QC', 'Quebec': 'QC',
+    'B.C.': 'BC', 'British Columbia': 'BC',
+    'Alta.': 'AB', 'Alberta': 'AB',
+    'N.L.': 'NL', 'Newfoundland and Labrador': 'NL',
+    'P.E.I.': 'PE', 'Prince Edward Island': 'PE',
+    'N.S.': 'NS', 'Nova Scotia': 'NS',
+    'N.B.': 'NB', 'New Brunswick': 'NB',
+    'Man.': 'MB', 'Manitoba': 'MB',
+    'Sask.': 'SK', 'Saskatchewan': 'SK',
+    'Y.T.': 'YT', 'Yukon': 'YT',
+    'N.W.T.': 'NT', 'Northwest Territories': 'NT',
+    'Nvt.': 'NU', 'Nunavut': 'NU'
+};
 
 let map;
 let worldLayer, usStatesLayer, canadaLayer;
@@ -59,6 +75,8 @@ function countryStyle(feature) {
             isVisited = true;
         } else if (countryNameLower.includes('united kingdom') || countryNameLower.includes('great britain')) {
             isVisited = true;
+        } else if (countryNameLower.includes('canada')) {
+            isVisited = true;
         }
     }
 
@@ -83,10 +101,29 @@ function usStateStyle(feature) {
     };
 }
 
+function isVisitedCanadianProvince(props) {
+    const candidates = [
+        props.PREABBR,
+        props.preabbr,
+        props.PRENAME,
+        props.prname,
+        props.name,
+        props.NAME,
+        props.PRUID
+    ].filter(Boolean).map(value => String(value).trim());
+
+    return candidates.some(candidate => {
+        if (visitedCanadianProvinces.includes(candidate)) {
+            return true;
+        }
+        const alias = CANADIAN_PROVINCE_ALIASES[candidate];
+        return alias && visitedCanadianProvinces.includes(alias);
+    });
+}
+
 function canadaProvinceStyle(feature) {
     const props = feature.properties || {};
-    const abbrev = (props.PREABBR || props.prname || props.preabbr || props.PRUID || '').trim();
-    const isVisited = visitedCanadianProvinces.includes(abbrev);
+    const isVisited = isVisitedCanadianProvince(props);
 
     return {
         weight: isVisited ? 1.5 : 1,
@@ -166,7 +203,7 @@ function loadCanadianProvinces() {
         })
         .catch(error => {
             console.error('Error loading Canada provinces GeoJSON:', error);
-            fetch('https://raw.githubusercontent.com/datasets/geo-admin1-ca/master/data/admin1-ca.geojson')
+            fetch('https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/canada.geojson')
                 .then(response => response.json())
                 .then(canadaData => {
                     canadaLayer = L.geoJSON(canadaData, {
