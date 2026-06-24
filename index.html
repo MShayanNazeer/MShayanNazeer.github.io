@@ -3,6 +3,8 @@ layout: default
 title: Home
 nav: home
 description: Muhammad Shayan Nazeer (Shayan Nazeer) — Ph.D. student at UMass Amherst researching 5G cellular core networks and AI infrastructure at Khwarizmi Lab. Former Nokia Bell Labs intern.
+extra_js:
+  - /js/news-scroll.js
 ---
 <div class="page-content">
   <h1 class="greeting">Hi!</h1>
@@ -34,7 +36,8 @@ description: Muhammad Shayan Nazeer (Shayan Nazeer) — Ph.D. student at UMass A
 
   <section class="news-section">
     <h2>Latest News</h2>
-    {% include news-table.html limit=4 %}
-    <p class="section-link"><a href="{{ '/news.html' | relative_url }}">View all news</a></p>
+    <div class="news-scroll">
+      {% include news-table.html %}
+    </div>
   </section>
 </div>

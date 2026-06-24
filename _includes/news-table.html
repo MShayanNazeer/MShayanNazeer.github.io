@@ -1,6 +1,6 @@
-<table class="news-table{% if include.full %} full-news-table{% endif %}">
+<table class="news-table">
   <tbody>
-    {% for item in site.data.news limit:include.limit %}
+    {% for item in site.data.news %}
     <tr>
       <th scope="row">{{ item.date }}</th>
       <td>{{ item.content }}</td>

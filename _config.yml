@@ -17,15 +17,15 @@ social:
   - label: Email
     url: mailto:mnazeer@umass.edu
     icon: email
-  - label: GitHub
-    url: https://github.com/MShayanNazeer
-    icon: github
-  - label: LinkedIn
-    url: https://www.linkedin.com/in/m-shayan-nazeer/
-    icon: linkedin
   - label: Google Scholar
     url: https://scholar.google.com/citations?user=iNR_PzYAAAAJ&hl=en
     icon: scholar
+  - label: LinkedIn
+    url: https://www.linkedin.com/in/m-shayan-nazeer/
+    icon: linkedin
+  - label: GitHub
+    url: https://github.com/MShayanNazeer
+    icon: github
 
 seo:
   legal_name: Muhammad Shayan Nazeer
@@ -73,9 +73,6 @@ navigation:
   - title: Home
     url: /
     key: home
-  - title: News
-    url: /news.html
-    key: news
   - title: Publications
     url: /publications.html
     key: publications

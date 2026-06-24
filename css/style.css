@@ -375,6 +375,32 @@ footer a:hover {
   margin-bottom: 1rem;
 }
 
+.news-scroll {
+  overflow-y: auto;
+  border: 1px solid var(--grey-200);
+  border-radius: 8px;
+  padding: 0.5rem 0.85rem;
+  background-color: var(--bg-surface);
+}
+
+.news-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.news-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.news-scroll::-webkit-scrollbar-thumb {
+  background-color: var(--grey-300);
+  border-radius: 4px;
+}
+
+.news-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--grey-300) transparent;
+}
+
 .news-table {
   width: 100%;
   border-collapse: collapse;
@@ -394,10 +420,6 @@ footer a:hover {
   font-weight: 400;
   white-space: nowrap;
   padding-right: 1rem;
-}
-
-.full-news-table {
-  margin-bottom: 0.5rem;
 }
 
 .life-intro {
