@@ -15,7 +15,7 @@
 
   const visited = {
     countries: new Set(['US', 'CA', 'FR', 'CH', 'JP', 'DE', 'IT', 'ES', 'GB', 'PK', 'TR', 'PT']),
-    countryNames: ['pakistan', 'turk', 'germany', 'deutschland', 'spain', 'españa', 'portugal', 'united kingdom', 'great britain', 'canada'],
+    countryNames: ['pakistan', 'turkey', 'türkiye', 'turkiye', 'germany', 'deutschland', 'spain', 'españa', 'portugal', 'united kingdom', 'great britain', 'canada'],
     usStates: new Set(['MA', 'CT', 'VT', 'NH', 'ME', 'NY', 'NJ', 'MD', 'DC', 'NC', 'PA', 'VA', 'WV', 'WA', 'OR', 'CA', 'IA', 'RI', 'DE']),
     canadaProvinces: new Set(['ON', 'QC', 'BC', 'AB', 'Ont.', 'Ontario', 'Que.', 'Quebec', 'B.C.', 'British Columbia', 'Alta.', 'Alberta'])
   };
