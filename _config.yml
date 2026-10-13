@@ -6,7 +6,7 @@ baseurl: ""
 
 profile:
   display_name: Shayan Nazeer
-  photo: /images/wesite_image.jpg
+  photo: /images/profile.jpg
   role_prefix: Research Asst. @
   role_link: Khwarizmi Lab
   role_url: https://khwarizmilab.github.io/
@@ -31,7 +31,7 @@ seo:
   legal_name: Muhammad Shayan Nazeer
   job_title: Ph.D. Student and Research Assistant in Electrical and Computer Engineering
   email: mnazeer@umass.edu
-  image: /images/wesite_image.jpg
+  image: /images/profile.jpg
   description: >
     Muhammad Shayan Nazeer (Shayan Nazeer) is a Ph.D. student in Electrical and Computer
     Engineering at UMass Amherst, advised by Taqi Raza at Khwarizmi Lab. His research

@@ -14,8 +14,18 @@
   };
 
   const visited = {
-    countries: new Set(['US', 'CA', 'FR', 'CH', 'JP', 'DE', 'IT', 'ES', 'GB', 'PK', 'TR', 'PT']),
-    countryNames: ['pakistan', 'turkey', 'türkiye', 'turkiye', 'germany', 'deutschland', 'spain', 'españa', 'portugal', 'united kingdom', 'great britain', 'canada'],
+    countries: new Set([
+      'CA', 'CAN', 'FR', 'FRA', 'CH', 'CHE', 'DE', 'DEU', 'IT', 'ITA',
+      'ES', 'ESP', 'GB', 'GBR', 'PK', 'PAK', 'TR', 'TUR', 'PT', 'PRT',
+      'BE', 'BEL', 'NL', 'NLD', 'AT', 'AUT', 'HU', 'HUN', 'SK', 'SVK',
+      'PL', 'POL', 'LV', 'LVA', 'LT', 'LTU', 'EE', 'EST', 'FI', 'FIN', 'IS', 'ISL'
+    ]),
+    countryNames: [
+      'pakistan', 'turkey', 'türkiye', 'turkiye', 'germany', 'deutschland',
+      'spain', 'españa', 'portugal', 'united kingdom', 'great britain', 'canada',
+      'france', 'belgium', 'netherlands', 'austria', 'hungary', 'slovakia',
+      'poland', 'latvia', 'lithuania', 'estonia', 'finland', 'iceland'
+    ],
     usStates: new Set(['MA', 'CT', 'VT', 'NH', 'ME', 'NY', 'NJ', 'MD', 'DC', 'NC', 'PA', 'VA', 'WV', 'WA', 'OR', 'CA', 'IA', 'RI', 'DE']),
     canadaProvinces: new Set(['ON', 'QC', 'BC', 'AB', 'Ont.', 'Ontario', 'Que.', 'Quebec', 'B.C.', 'British Columbia', 'Alta.', 'Alberta'])
   };
@@ -29,16 +39,23 @@
   };
 
   const regionStyle = (isVisited, palette, unvisitedOpacity = 0.25) => ({
-    weight: isVisited ? 1.5 : 1,
+    weight: isVisited ? 2 : 1,
     color: isVisited ? palette.border : COLORS.unvisited.border,
     fillColor: isVisited ? palette.fill : COLORS.unvisited.fill,
-    fillOpacity: isVisited ? 0.88 : unvisitedOpacity
+    fillOpacity: isVisited ? 0.92 : unvisitedOpacity
   });
 
-  const isVisitedCountry = (properties) => {
-    const codes = [prop(properties, ['iso_a2', 'ISO_A2', 'iso_a2_eh']), prop(properties, ['iso_a3', 'ISO_A3', 'iso_a3_eh'])];
-    if (codes.some((code) => visited.countries.has(code))) return true;
-    const name = prop(properties, ['name', 'NAME', 'country']).toLowerCase();
+  const countryCodes = (feature) => {
+    const properties = feature.properties || {};
+    return [
+      feature.id,
+      prop(properties, ['iso_a2', 'ISO_A2', 'iso_a2_eh', 'iso_a3', 'ISO_A3', 'iso_a3_eh'])
+    ].filter(Boolean);
+  };
+
+  const isVisitedCountry = (feature) => {
+    if (countryCodes(feature).some((code) => visited.countries.has(code))) return true;
+    const name = prop(feature.properties || {}, ['name', 'NAME', 'country']).toLowerCase();
     return visited.countryNames.some((term) => name.includes(term));
   };
 
@@ -52,9 +69,9 @@
       .some((value) => visited.canadaProvinces.has(String(value).trim()));
 
   const styleHandlers = {
-    country: (feature) => regionStyle(isVisitedCountry(feature.properties || {}), COLORS.visited.country),
+    country: (feature) => regionStyle(isVisitedCountry(feature), COLORS.visited.country),
     usState: (feature) => regionStyle(isVisitedSubregion(feature.properties || {}, ['state_code', 'STUSPS'], visited.usStates), COLORS.visited.region, 0.15),
-    canadaProvince: (feature) => regionStyle(isVisitedCanada(feature.properties || {}), COLORS.visited.region, 0.15)
+    canadaProvince: (feature) => regionStyle(isVisitedCanada(feature.properties || {}), COLORS.visited.region, 0)
   };
 
   const bindHover = (feature, layer) => {
