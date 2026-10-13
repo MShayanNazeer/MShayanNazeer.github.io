@@ -90,5 +90,4 @@ exclude:
   - README.md
   - vendor
 
-plugins:
-  - jekyll-sitemap
+plugins: []

@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
-
-Sitemap: https://mshayannazeer.github.io/sitemap.xml
+# Crawling is allowed so search engines can read each page's noindex directive.
+Disallow: /documents/
+Disallow: /images/
