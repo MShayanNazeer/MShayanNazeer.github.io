@@ -5,8 +5,7 @@
     </a>
     <div class="sidebar-identity">
       <p class="sidebar-name">{{ site.profile.display_name }}</p>
-      <p class="sidebar-role">{{ site.profile.role_prefix }} <a href="{{ site.profile.role_url }}">{{ site.profile.role_link }}</a></p>
-      <p class="sidebar-university"><a href="{{ site.profile.university_url }}" target="_blank" rel="noopener noreferrer">{{ site.profile.university }}</a></p>
+      <p class="sidebar-role">{{ site.profile.role_prefix }}<a href="{{ site.profile.role_url }}">{{ site.profile.role_link }}</a></p>
     </div>
     <div class="sidebar-social">
       {% for link in site.social %}
